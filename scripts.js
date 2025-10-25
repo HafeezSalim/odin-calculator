@@ -2,7 +2,7 @@ const calculatorState = {
     
     firstNum: "5",
     operator: "+",
-    secondNum: "5",
+    secondNum: "3",
 
     add: function() {
         let result = parseInt(this.firstNum) + parseInt(this.secondNum);
@@ -46,3 +46,5 @@ const calculatorState = {
     }
 
 };
+
+console.log(calculatorState.operate());

@@ -4,3 +4,32 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+.calculatorWrapper {
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+    height: 1000px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+}
+
+.Line3, .Line4, .Line5, .Line6, .Line7 {
+    display: flex;
+}
+
+.InputButton {
+    display: flex;
+    flex-grow: 0;
+    flex-shrink: 0;
+    height: 50px;
+    width: 50px;
+    border: 2px;
+    border-style: solid;
+    border-color: black;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+
+}
