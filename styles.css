@@ -15,6 +15,16 @@
     flex-direction: column;
 }
 
+.Line1, .Line2 {
+    flex-grow: 0;
+    flex-shrink: 0;
+    border: 2px solid black;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
 .Line3, .Line4, .Line5, .Line6, .Line7 {
     display: flex;
 }
@@ -31,5 +41,4 @@
     padding: 10px;
     justify-content: center;
     align-items: center;
-
 }

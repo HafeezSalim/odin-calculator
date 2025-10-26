@@ -46,5 +46,3 @@ const calculatorState = {
     }
 
 };
-
-console.log(calculatorState.operate());
