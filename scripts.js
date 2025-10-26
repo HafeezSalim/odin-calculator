@@ -43,6 +43,17 @@ const calculatorState = {
                 break;
         }
         return result;
+    },
+
+    updateDisplay: function(event) {
+        console.log(event.target.id + " was clicked.");
     }
 
 };
+
+let buttons = document.querySelector(".Buttons");
+buttons.addEventListener("click", (event) => {
+    if (event.target.id != "") {
+        calculatorState.updateDisplay(event);
+    }
+})
