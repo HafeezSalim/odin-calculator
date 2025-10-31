@@ -120,13 +120,118 @@ const calculatorState = {
         }
     },
 
+    populateOperator: function() {
+        switch(event.target.id) {
+            case "PlusButton":
+                this.operator = "+";
+                break;
+            case "MinusButton":
+                this.operator = "-";
+                break;
+            case "MultiplyButton":
+                this.operator = "×";
+                break;
+            case "DivideButton":
+                this.operator = "÷";
+                break;                                                
+        }
+    },
+
+    populateSecondNum: function () {
+        switch(event.target.id) {
+            case "ZeroButton":
+                if (this.secondNum=="0") {
+                    //do nothing
+                } else {
+                    this.secondNum = this.secondNum + "0";
+                }
+                break;
+            case "OneButton":
+                if (this.secondNum=="0") {
+                    this.secondNum = "1";
+                } else {
+                    this.secondNum = this.secondNum + "1";
+                }
+                break;
+            case "TwoButton":
+                if (this.secondNum=="0") {
+                    this.secondNum = "2";
+                } else {
+                    this.secondNum = this.secondNum + "2";
+                }
+                break;
+            case "ThreeButton":
+                if (this.secondNum=="0") {
+                    this.secondNum = "3";
+                } else {
+                    this.secondNum = this.secondNum + "3";
+                }
+                break;
+            case "FourButton":
+                if (this.secondNum=="0") {
+                    this.secondNum = "4";
+                } else {
+                    this.secondNum = this.secondNum + "4";
+                }
+                break;
+            case "FiveButton":
+                if (this.secondNum=="0") {
+                    this.secondNum = "5";
+                } else {
+                    this.secondNum = this.secondNum + "5";
+                }
+                break;
+            case "SixButton":
+                if (this.secondNum=="0") {
+                    this.secondNum = "6";
+                } else {
+                    this.secondNum = this.secondNum + "6";
+                }
+                break;
+            case "SevenButton":
+                if (this.secondNum=="0") {
+                    this.secondNum = "7";
+                } else {
+                    this.secondNum = this.secondNum + "7";
+                }
+                break;
+            case "EightButton":
+                if (this.secondNum=="0") {
+                    this.secondNum = "8";
+                } else {
+                    this.secondNum = this.secondNum + "8";
+                }
+                break;
+            case "NineButton":
+                 if (this.secondNum=="0") {
+                    this.secondNum = "9";
+                } else {
+                    this.secondNum = this.secondNum + "9";
+                }
+                break;   
+        }
+    },
+
     updateDisplay: function(event) {
         let display1 = document.querySelector(".Line1");
         display1.textContent="";
         if (event.target.classList.contains("Number") && this.operator=="" && this.secondNum=="") {
             this.populateFirstNum();
         }
-        display1.textContent=this.firstNum;
+        if (event.target.classList.contains("Operator") && this.firstNum!="" && this.secondNum=="") {
+            this.populateOperator();
+        }
+        if (event.target.classList.contains("Number") && this.firstNum!="" && this.operator!="") {
+            this.populateSecondNum();
+        }
+
+        //testing purposes
+        console.clear();
+        console.log("firstNum: " + this.firstNum);
+        console.log("operator: " + this.operator);
+        console.log("secondNum: " + this.secondNum);
+
+        display1.textContent=this.firstNum + this.operator + this.secondNum;
         
     }
 
