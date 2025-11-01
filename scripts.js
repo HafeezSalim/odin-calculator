@@ -3,46 +3,50 @@ const calculatorState = {
     firstNum: "",
     operator: "",
     secondNum: "",
+    result: "",
+
+    clearDisplay: function() {
+        this.firstNum = "";
+        this.operator = "";
+        this.secondNum = "";
+        this.result = "";
+    },
 
     add: function() {
-        let result = parseInt(this.firstNum) + parseInt(this.secondNum);
-        return result;
+        this.result = parseInt(this.firstNum) + parseInt(this.secondNum);
     },
 
     subtract: function() {
-        let result = parseInt(this.firstNum) - parseInt(this.secondNum);
-        return result;
+        this.result = parseInt(this.firstNum) - parseInt(this.secondNum);
+
     },
 
     multiply: function() {
-        let result = parseInt(this.firstNum) * parseInt(this.secondNum);
-        return result;
+        this.result = parseInt(this.firstNum) * parseInt(this.secondNum);
     },
 
-    divide: function() { 
-        let result = parseInt(this.firstNum) / parseInt(this.secondNum);
-        return result;
+    divide: function() {
+        this.result = parseInt(this.firstNum) / parseInt(this.secondNum);
     },
 
     operate: function() {
         switch(this.operator) {
             case "+":
-                result = this.add();
+                this.add();
                 break;
             case "-":
-                result = this.subtract();
+                this.subtract();
                 break;
-            case "*":
-                result = this.multiply();
+            case "×":
+                this.multiply();
                 break;
-            case "/":
-                result = this.divide();
+            case "÷":
+                this.divide();
                 break;
             case "":
-                result = "";
+                //do nothing
                 break;
         }
-        return result;
     },
 
     populateFirstNum: function () {
@@ -116,7 +120,22 @@ const calculatorState = {
                 } else {
                     this.firstNum = this.firstNum + "9";
                 }
-                break;   
+                break;
+            case "PlusButton":
+                this.firstNum = this.result;
+                break;
+            case "MinusButton":
+                this.firstNum = this.result;
+                break;
+            case "MultiplyButton":
+                this.firstNum = this.result;
+                break;
+            case "DivideButton":
+                this.firstNum = this.result;
+                break;
+            case "EqualsButton":
+                this.firstNum = this.result;
+                break;  
         }
     },
 
@@ -138,6 +157,11 @@ const calculatorState = {
     },
 
     populateSecondNum: function () {
+        if (this.result != "") {
+            this.result = "";
+            this.secondNum = "";
+        }
+
         switch(event.target.id) {
             case "ZeroButton":
                 if (this.secondNum=="0") {
@@ -213,9 +237,16 @@ const calculatorState = {
     },
 
     updateDisplay: function(event) {
-        let display1 = document.querySelector(".Line1");
-        display1.textContent="";
-        if (event.target.classList.contains("Number") && this.operator=="" && this.secondNum=="") {
+        //reset display first
+        let display = document.querySelector(".Display");
+        display.textContent="";
+
+        //clear display and all properties
+        if (event.target.id == "ClearButton") {
+            this.clearDisplay();
+        }
+        //populate 3 properties before operation
+        if ((event.target.classList.contains("Number") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || (event.target.id == "EqualsButton") && this.result != "") {
             this.populateFirstNum();
         }
         if (event.target.classList.contains("Operator") && this.firstNum!="" && this.secondNum=="") {
@@ -225,13 +256,26 @@ const calculatorState = {
             this.populateSecondNum();
         }
 
-        //testing purposes
+        //perform operation
+        if (((event.target.classList.contains("Operator") || event.target.id == "EqualsButton") && this.firstNum!="" && this.secondNum!="") || (event.target.id == "EqualsButton" && this.firstNum!="" && this.result!="")) {
+            this.operate();
+        }        
+
+        //testing purposes. delete this once done.
         console.clear();
         console.log("firstNum: " + this.firstNum);
         console.log("operator: " + this.operator);
         console.log("secondNum: " + this.secondNum);
+        console.log("result: " + this.result);
 
-        display1.textContent=this.firstNum + this.operator + this.secondNum;
+        //display logic
+        if (event.target.id == "EqualsButton") {
+            display.textContent = this.result;
+        } else if (event.target.classList.contains("Operator") && this.firstNum!="" && this.result!="") {
+            display.textContent = this.firstNum + this.operator;
+        } else {
+            display.textContent = this.firstNum + this.operator + this.secondNum;
+        }
         
     }
 

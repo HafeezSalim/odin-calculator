@@ -15,7 +15,7 @@
     flex-direction: column;
 }
 
-.Line1, .Line2 {
+.Display {
     flex-grow: 0;
     flex-shrink: 0;
     border: 2px solid black;
