@@ -52,6 +52,10 @@ const calculatorState = {
     populateFirstNum: function () {
         switch(event.target.id) {
             case "ZeroButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
                 if (this.firstNum=="0") {
                     //do nothing
                 } else {
@@ -59,6 +63,10 @@ const calculatorState = {
                 }
                 break;
             case "OneButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
                 if (this.firstNum=="0") {
                     this.firstNum = "1";
                 } else {
@@ -66,6 +74,10 @@ const calculatorState = {
                 }
                 break;
             case "TwoButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
                 if (this.firstNum=="0") {
                     this.firstNum = "2";
                 } else {
@@ -73,6 +85,10 @@ const calculatorState = {
                 }
                 break;
             case "ThreeButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
                 if (this.firstNum=="0") {
                     this.firstNum = "3";
                 } else {
@@ -80,6 +96,10 @@ const calculatorState = {
                 }
                 break;
             case "FourButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
                 if (this.firstNum=="0") {
                     this.firstNum = "4";
                 } else {
@@ -87,6 +107,10 @@ const calculatorState = {
                 }
                 break;
             case "FiveButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
                 if (this.firstNum=="0") {
                     this.firstNum = "5";
                 } else {
@@ -94,6 +118,10 @@ const calculatorState = {
                 }
                 break;
             case "SixButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
                 if (this.firstNum=="0") {
                     this.firstNum = "6";
                 } else {
@@ -101,6 +129,10 @@ const calculatorState = {
                 }
                 break;
             case "SevenButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
                 if (this.firstNum=="0") {
                     this.firstNum = "7";
                 } else {
@@ -108,6 +140,10 @@ const calculatorState = {
                 }
                 break;
             case "EightButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
                 if (this.firstNum=="0") {
                     this.firstNum = "8";
                 } else {
@@ -115,6 +151,10 @@ const calculatorState = {
                 }
                 break;
             case "NineButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
                  if (this.firstNum=="0") {
                     this.firstNum = "9";
                 } else {
@@ -278,7 +318,12 @@ const calculatorState = {
         //perform operation
         if (((event.target.classList.contains("Operator") || event.target.id == "EqualsButton") && this.firstNum!="" && this.secondNum!="") || (event.target.id == "EqualsButton" && this.firstNum!="" && this.result!="")) {
             this.operate();
-        }        
+        }
+        
+        //set result as firstNum if no operate is not called
+        if (event.target.id == "EqualsButton" && this.operator=="" && this.secondNum=="") {
+            this.result = this.firstNum;
+        }
 
         //testing purposes. delete this once done.
         console.clear();
@@ -289,7 +334,15 @@ const calculatorState = {
 
         //display logic
         if (event.target.id == "EqualsButton") {
-            display.textContent = this.result;
+            if (this.operator != "" && this.secondNum == "") {
+                display.textContent = "Please enter a second number before attempting operation! All values have been resetted."
+                this.firstNum = "";
+                this.operator = "";
+                this.secondNum = "";
+                this.result = "";
+            } else {
+                display.textContent = this.result;
+            }
         } else if (event.target.classList.contains("Operator") && this.firstNum!="" && this.result!="") {
             display.textContent = this.firstNum + this.operator;
         } else {
