@@ -122,16 +122,36 @@ const calculatorState = {
                 }
                 break;
             case "PlusButton":
-                this.firstNum = this.result;
+                if (this.result != "") {
+                    this.firstNum = this.result;
+                } else {
+                    this.operate();
+                    this.firstNum = this.result;
+                }
                 break;
             case "MinusButton":
-                this.firstNum = this.result;
+                if (this.result != "") {
+                    this.firstNum = this.result;
+                } else {
+                    this.operate();
+                    this.firstNum = this.result;
+                }
                 break;
             case "MultiplyButton":
-                this.firstNum = this.result;
+                 if (this.result != "") {
+                    this.firstNum = this.result;
+                } else {
+                    this.operate();
+                    this.firstNum = this.result;
+                }
                 break;
             case "DivideButton":
-                this.firstNum = this.result;
+                if (this.result != "") {
+                    this.firstNum = this.result;
+                } else {
+                    this.operate();
+                    this.firstNum = this.result;
+                }
                 break;
             case "EqualsButton":
                 this.firstNum = this.result;
@@ -140,6 +160,10 @@ const calculatorState = {
     },
 
     populateOperator: function() {
+        if (this.result != "") {
+            this.result = "";
+            this.secondNum = "";
+        }
         switch(event.target.id) {
             case "PlusButton":
                 this.operator = "+";
@@ -157,11 +181,6 @@ const calculatorState = {
     },
 
     populateSecondNum: function () {
-        if (this.result != "") {
-            this.result = "";
-            this.secondNum = "";
-        }
-
         switch(event.target.id) {
             case "ZeroButton":
                 if (this.secondNum=="0") {
@@ -246,10 +265,10 @@ const calculatorState = {
             this.clearDisplay();
         }
         //populate 3 properties before operation
-        if ((event.target.classList.contains("Number") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || (event.target.id == "EqualsButton") && this.result != "") {
+        if ((event.target.classList.contains("Number") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || (event.target.id == "EqualsButton" && this.result != "") || (event.target.classList.contains("Operator") && this.firstNum != "" && this.secondNum != "")) {
             this.populateFirstNum();
         }
-        if (event.target.classList.contains("Operator") && this.firstNum!="" && this.secondNum=="") {
+        if ((event.target.classList.contains("Operator") && this.firstNum!="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "")) {
             this.populateOperator();
         }
         if (event.target.classList.contains("Number") && this.firstNum!="" && this.operator!="") {
