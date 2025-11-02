@@ -9,8 +9,8 @@
     border: 2px;
     border-style: solid;
     border-color: black;
-    height: 1000px;
-    width: 800px;
+    height: 80vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
 }
@@ -19,25 +19,53 @@
     flex-grow: 0;
     flex-shrink: 0;
     border: 2px solid black;
-    height: 50px;
+    height: 20%;
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    font-size: 50px;
+    background-color: linen;
+    overflow-wrap: break-word; /* Modern equivalent of word-wrap */
+}
+
+.Buttons {
+    height: 80%;
+    font-size: 30px;
 }
 
 .Line3, .Line4, .Line5, .Line6, .Line7 {
     display: flex;
+    height: 20%;
 }
 
 .InputButton {
     display: flex;
-    flex-grow: 0;
-    flex-shrink: 0;
-    height: 50px;
+    flex-grow: 1;
+    flex-shrink: 0; 
     width: 50px;
     border: 2px;
     border-style: solid;
     border-color: black;
     justify-content: center;
     align-items: center;
+}
+
+#ClearButton {
+    flex: 0 0 75%;
+}
+
+#DivideButton {
+    flex: 1;
+}
+
+.Number {
+    background-color:aliceblue;
+}
+
+.Operator {
+    background-color: beige;
+}
+
+#ClearButton, #EqualsButton {
+    background-color: bisque;
 }

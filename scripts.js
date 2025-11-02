@@ -26,7 +26,12 @@ const calculatorState = {
     },
 
     divide: function() {
-        this.result = parseInt(this.firstNum) / parseInt(this.secondNum);
+        if (this.secondNum == "0") {
+            this.result = "Don't do it!"
+        } else {
+            this.result = parseInt(this.firstNum) / parseInt(this.secondNum);
+        }
+        
     },
 
     operate: function() {
@@ -335,7 +340,7 @@ const calculatorState = {
         //display logic
         if (event.target.id == "EqualsButton") {
             if (this.operator != "" && this.secondNum == "") {
-                display.textContent = "Please enter a second number before attempting operation! All values have been resetted."
+                display.textContent = "Error!"
                 this.firstNum = "";
                 this.operator = "";
                 this.secondNum = "";
