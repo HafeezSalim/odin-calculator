@@ -160,10 +160,21 @@ const calculatorState = {
                     this.result = "";
                     this.firstNum = "";
                 }
-                 if (this.firstNum=="0") {
+                if (this.firstNum=="0") {
                     this.firstNum = "9";
                 } else {
                     this.firstNum = this.firstNum + "9";
+                }
+                break;
+            case "DotButton":
+                if (this.result!="") {
+                    this.result = "";
+                    this.firstNum = "";
+                }
+                if (this.firstNum != "") {
+                    this.firstNum = this.firstNum + ".";
+                } else {
+                    //do nothing as decimal must come after a digit
                 }
                 break;
             case "PlusButton":
@@ -310,7 +321,7 @@ const calculatorState = {
             this.clearDisplay();
         }
         //populate 3 properties before operation
-        if ((event.target.classList.contains("Number") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || (event.target.id == "EqualsButton" && this.result != "") || (event.target.classList.contains("Operator") && this.firstNum != "" && this.secondNum != "")) {
+        if (((event.target.classList.contains("Number") || event.target.id == "DotButton") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || (event.target.id == "EqualsButton" && this.result != "") || (event.target.classList.contains("Operator") && this.firstNum != "" && this.secondNum != "")) {
             this.populateFirstNum();
         }
         if ((event.target.classList.contains("Operator") && this.firstNum!="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "")) {
@@ -318,6 +329,14 @@ const calculatorState = {
         }
         if (event.target.classList.contains("Number") && this.firstNum!="" && this.operator!="") {
             this.populateSecondNum();
+        }
+
+        //fade away decimal button if detected
+        let decimalButton = document.querySelector("#DotButton");
+        if (this.firstNum.includes(".")) {
+            decimalButton.classList.add("greyed-out");
+        } else {
+            decimalButton.classList.remove("greyed-out");
         }
 
         //perform operation
