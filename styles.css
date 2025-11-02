@@ -58,7 +58,7 @@
     flex: 1;
 }
 
-.Number {
+.Number, #DotButton {
     background-color:aliceblue;
 }
 
