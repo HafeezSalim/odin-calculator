@@ -13,28 +13,32 @@ const calculatorState = {
     },
 
     add: function() {
-        this.result = parseInt(this.firstNum) + parseInt(this.secondNum);
+        this.result = Number(this.firstNum) + Number(this.secondNum);
     },
 
     subtract: function() {
-        this.result = parseInt(this.firstNum) - parseInt(this.secondNum);
+        this.result = Number(this.firstNum) - Number(this.secondNum);
 
     },
 
     multiply: function() {
-        this.result = parseInt(this.firstNum) * parseInt(this.secondNum);
+        this.result = Number(this.firstNum) * Number(this.secondNum);
     },
 
     divide: function() {
         if (this.secondNum == "0") {
             this.result = "Don't do it!"
         } else {
-            this.result = parseInt(this.firstNum) / parseInt(this.secondNum);
+            this.result = Number(this.firstNum) / Number(this.secondNum);
         }
-        
     },
 
     operate: function() {
+        //remove decimal if no digit is inputted prior to operation
+        this.secondNum = this.secondNum.toString();
+        if (this.secondNum.charAt(this.secondNum.length -1) == ".") {
+            this.secondNum = this.secondNum.slice(0, -1);
+        }
         switch(this.operator) {
             case "+":
                 this.add();
@@ -220,6 +224,11 @@ const calculatorState = {
             this.result = "";
             this.secondNum = "";
         }
+        //remove decimal if no digit is inputted prior to operation
+        this.firstNum = this.firstNum.toString();
+        if (this.firstNum.charAt(this.firstNum.length -1) == ".") {
+            this.firstNum = this.firstNum.slice(0, -1);
+        }
         switch(event.target.id) {
             case "PlusButton":
                 this.operator = "+";
@@ -307,7 +316,14 @@ const calculatorState = {
                 } else {
                     this.secondNum = this.secondNum + "9";
                 }
-                break;   
+                break;
+            case "DotButton":
+                if (this.secondNum != "") {
+                    this.secondNum = this.secondNum + ".";
+                } else {
+                    //do nothing as decimal must come after a digit
+                }
+                break;
         }
     },
 
@@ -327,13 +343,13 @@ const calculatorState = {
         if ((event.target.classList.contains("Operator") && this.firstNum!="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "")) {
             this.populateOperator();
         }
-        if (event.target.classList.contains("Number") && this.firstNum!="" && this.operator!="") {
+        if ((event.target.classList.contains("Number") || event.target.id == "DotButton") && this.firstNum!="" && this.operator!="") {
             this.populateSecondNum();
         }
 
         //fade away decimal button if detected
         let decimalButton = document.querySelector("#DotButton");
-        if (this.firstNum.includes(".")) {
+        if ((this.firstNum.toString().includes(".") && this.operator == "") || (this.secondNum.toString().includes(".") && this.result == "")) {
             decimalButton.classList.add("greyed-out");
         } else {
             decimalButton.classList.remove("greyed-out");
