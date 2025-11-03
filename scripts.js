@@ -64,6 +64,8 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum=="0") {
                     //do nothing
@@ -75,6 +77,8 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum=="0") {
                     this.firstNum = "1";
@@ -86,6 +90,8 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum=="0") {
                     this.firstNum = "2";
@@ -97,6 +103,8 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum=="0") {
                     this.firstNum = "3";
@@ -108,6 +116,8 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum=="0") {
                     this.firstNum = "4";
@@ -119,6 +129,8 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum=="0") {
                     this.firstNum = "5";
@@ -130,6 +142,8 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum=="0") {
                     this.firstNum = "6";
@@ -141,6 +155,8 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum=="0") {
                     this.firstNum = "7";
@@ -152,6 +168,8 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum=="0") {
                     this.firstNum = "8";
@@ -163,6 +181,8 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum=="0") {
                     this.firstNum = "9";
@@ -174,11 +194,13 @@ const calculatorState = {
                 if (this.result!="") {
                     this.result = "";
                     this.firstNum = "";
+                    this.operator = "";
+                    this.secondNum = "";
                 }
                 if (this.firstNum != "") {
                     this.firstNum = this.firstNum + ".";
                 } else {
-                    //do nothing as decimal must come after a digit
+                    this.firstNum = this.firstNum + "0.";
                 }
                 break;
             case "PlusButton":
@@ -321,7 +343,7 @@ const calculatorState = {
                 if (this.secondNum != "") {
                     this.secondNum = this.secondNum + ".";
                 } else {
-                    //do nothing as decimal must come after a digit
+                    this.secondNum = this.secondNum + "0.";
                 }
                 break;
         }
@@ -337,7 +359,7 @@ const calculatorState = {
             this.clearDisplay();
         }
         //populate 3 properties before operation
-        if (((event.target.classList.contains("Number") || event.target.id == "DotButton") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || (event.target.id == "EqualsButton" && this.result != "") || (event.target.classList.contains("Operator") && this.firstNum != "" && this.secondNum != "")) {
+        if (((event.target.classList.contains("Number") || event.target.id == "DotButton") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || ((event.target.id == "EqualsButton" || event.target.classList.contains("Number")) && this.result != "") || (event.target.classList.contains("Operator") && this.firstNum != "" && this.secondNum != "")) {
             this.populateFirstNum();
         }
         if ((event.target.classList.contains("Operator") && this.firstNum!="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "")) {
