@@ -359,7 +359,7 @@ const calculatorState = {
             this.clearDisplay();
         }
         //populate 3 properties before operation
-        if (((event.target.classList.contains("Number") || event.target.id == "DotButton") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || ((event.target.id == "EqualsButton" || event.target.classList.contains("Number")) && this.result != "") || (event.target.classList.contains("Operator") && this.firstNum != "" && this.secondNum != "")) {
+        if (((event.target.classList.contains("Number") || event.target.id == "DotButton") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || ((event.target.id == "EqualsButton" || event.target.classList.contains("Number") || event.target.id == "DotButton") && this.result != "") || (event.target.classList.contains("Operator") && this.firstNum != "" && this.secondNum != "")) {
             this.populateFirstNum();
         }
         if ((event.target.classList.contains("Operator") && this.firstNum!="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "")) {
