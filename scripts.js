@@ -270,7 +270,14 @@ const calculatorState = {
                 break;
             case "DivideButton":
                 this.operator = "÷";
-                break;                                                
+                break;
+            case "BackspaceButton":
+                if (this.operator != "") {
+                    this.operator = "";
+                } else {
+                    //do nothing
+                }
+                break;                                                 
         }
     },
 
@@ -369,7 +376,7 @@ const calculatorState = {
         if (((event.target.classList.contains("Number") || event.target.id == "DotButton" || event.target.id == "BackspaceButton") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || ((event.target.id == "EqualsButton" || event.target.classList.contains("Number") || event.target.id == "DotButton") && this.result != "") || (event.target.classList.contains("Operator") && this.firstNum != "" && this.secondNum != "")) {
             this.populateFirstNum();
         }
-        if ((event.target.classList.contains("Operator") && this.firstNum!="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "")) {
+        if (((event.target.classList.contains("Operator") || event.target.id == "BackspaceButton") && this.firstNum!="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "")) {
             this.populateOperator();
         }
         if ((event.target.classList.contains("Number") || event.target.id == "DotButton") && this.firstNum!="" && this.operator!="") {
