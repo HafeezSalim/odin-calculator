@@ -241,6 +241,7 @@ const calculatorState = {
             case "BackspaceButton":
                 if (this.firstNum != "") {
                     this.firstNum = this.firstNum.toString().slice(0,-1);
+                    this.result = "";
                 } else {
                     //do nothing
                 }
@@ -360,6 +361,14 @@ const calculatorState = {
                     this.secondNum = this.secondNum + "0.";
                 }
                 break;
+            case "BackspaceButton":
+                if (this.secondNum != "") {
+                    this.secondNum = this.secondNum.toString().slice(0,-1);
+                    this.result = "";
+                } else {
+                    //do nothing
+                }
+                break;  
         }
     },
 
@@ -379,7 +388,7 @@ const calculatorState = {
         if (((event.target.classList.contains("Operator") || event.target.id == "BackspaceButton") && this.firstNum!="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "")) {
             this.populateOperator();
         }
-        if ((event.target.classList.contains("Number") || event.target.id == "DotButton") && this.firstNum!="" && this.operator!="") {
+        if ((event.target.classList.contains("Number") || event.target.id == "DotButton" || event.target.id == "BackspaceButton") && this.firstNum!="" && this.operator!="" && this.result == "") {
             this.populateSecondNum();
         }
 
@@ -390,15 +399,23 @@ const calculatorState = {
         } else {
             decimalButton.classList.remove("greyed-out");
         }
-
+        
         //perform operation
         if (((event.target.classList.contains("Operator") || event.target.id == "EqualsButton") && this.firstNum!="" && this.secondNum!="") || (event.target.id == "EqualsButton" && this.firstNum!="" && this.result!="")) {
             this.operate();
         }
-        
+
         //set result as firstNum if no operate is not called
         if (event.target.id == "EqualsButton" && this.operator=="" && this.secondNum=="") {
             this.result = this.firstNum;
+        }
+
+        //fade away backspace button if not needed
+        let backspaceButton = document.querySelector("#BackspaceButton");
+        if (this.result != "" || (this.firstNum == "" && this.operator == "" && this.secondNum == "")) {
+            backspaceButton.classList.add("greyed-out")
+        } else {
+            backspaceButton.classList.remove("greyed-out");
         }
 
         //testing purposes. delete this once done.
