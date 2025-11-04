@@ -446,9 +446,18 @@ const calculatorState = {
 
 };
 
+//listen for click events
 let buttons = document.querySelector(".Buttons");
 buttons.addEventListener("click", (event) => {
     if (event.target.id != "") {
         calculatorState.updateDisplay(event);
     }
+})
+
+//listen for keyboard events
+let calculatorPage = document.body;
+calculatorPage.addEventListener("keydown", (event) => {
+    console.clear();
+    console.log("Event key: " + event.key);
+    console.log("Event code: " + event.code);
 })
