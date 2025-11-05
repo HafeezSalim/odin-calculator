@@ -469,77 +469,99 @@ calculatorPage.addEventListener("keydown", (event) => {
             case "1":
                 simulatedButton = document.querySelector("#OneButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "2":
                 simulatedButton = document.querySelector("#TwoButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "3":
                 simulatedButton = document.querySelector("#ThreeButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "4":
                 simulatedButton = document.querySelector("#FourButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "5":
                 simulatedButton = document.querySelector("#FiveButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "6":
                 simulatedButton = document.querySelector("#SixButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "7":
                 simulatedButton = document.querySelector("#SevenButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "8":
                 simulatedButton = document.querySelector("#EightButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "9":
                 simulatedButton = document.querySelector("#NineButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "0":
                 simulatedButton = document.querySelector("#ZeroButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case ".":
                 simulatedButton = document.querySelector("#DotButton");
                 simulatedButton.dispatchEvent(myClickEvent);
-                break;
-            case "+":
-                simulatedButton = document.querySelector("#PlusButton");
-                simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "-":
                 simulatedButton = document.querySelector("#MinusButton");
                 simulatedButton.dispatchEvent(myClickEvent);
-                break;
-            case "*":
-                simulatedButton = document.querySelector("#MultiplyButton");
-                simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "/":
                 simulatedButton = document.querySelector("#DivideButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "=":
                 simulatedButton = document.querySelector("#EqualsButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "Enter":
                 simulatedButton = document.querySelector("#EqualsButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
             case "Backspace":
                 simulatedButton = document.querySelector("#BackspaceButton");
                 simulatedButton.dispatchEvent(myClickEvent);
+                isKeyDown = true;
                 break;
         }
-        isKeyDown = true;
+
+        if (event.shiftKey) {
+            switch (event.key) {
+                case "+":
+                    simulatedButton = document.querySelector("#PlusButton");
+                    simulatedButton.dispatchEvent(myClickEvent);
+                    isKeyDown = true;
+                    break;
+                case "*":
+                    simulatedButton = document.querySelector("#MultiplyButton");
+                    simulatedButton.dispatchEvent(myClickEvent);
+                    isKeyDown = true;
+                    break;
+            }
+        }
     }
 })
 
