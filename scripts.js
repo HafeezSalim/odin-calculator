@@ -373,6 +373,10 @@ const calculatorState = {
     },
 
     updateDisplay: function(event) {
+        //prevent keyboard from overriding elements with "greyed-out" class
+        if (event.target.classList.contains("greyed-out")) {
+            return;
+        }
         //reset display first
         let display = document.querySelector(".Display");
         display.textContent="";
@@ -381,6 +385,7 @@ const calculatorState = {
         if (event.target.id == "ClearButton") {
             this.clearDisplay();
         }
+
         //populate 3 properties before operation
         if (((event.target.classList.contains("Number") || event.target.id == "DotButton" || event.target.id == "BackspaceButton") && this.operator=="" && this.secondNum=="") || (event.target.classList.contains("Operator") && this.result != "") || ((event.target.id == "EqualsButton" || event.target.classList.contains("Number") || event.target.id == "DotButton") && this.result != "") || (event.target.classList.contains("Operator") && this.firstNum != "" && this.secondNum != "")) {
             this.populateFirstNum();
@@ -413,7 +418,7 @@ const calculatorState = {
         //fade away backspace button if not needed
         let backspaceButton = document.querySelector("#BackspaceButton");
         if (this.result != "" || (this.firstNum == "" && this.operator == "" && this.secondNum == "")) {
-            backspaceButton.classList.add("greyed-out")
+            backspaceButton.classList.add("greyed-out");
         } else {
             backspaceButton.classList.remove("greyed-out");
         }
