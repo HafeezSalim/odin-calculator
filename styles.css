@@ -14,8 +14,14 @@ html {
     font-size: 20px;
 }
 
+body {
+    background-color: black;
+}
+
 h1 {
+    font-family: calculatorDisplayFont, sans-serif;
     font-size: 1.5rem;
+    color: white;
 }
 
 .calculatorWrapper {
@@ -32,6 +38,7 @@ h1 {
     flex-grow: 0;
     flex-shrink: 0;
     border: 2px solid black;
+    padding: 0.5rem;
     height: 20%;
     display: flex;
     justify-content: flex-end;
@@ -41,10 +48,12 @@ h1 {
     background-color: black;
     color: white;
     overflow-wrap: break-word; /* Modern equivalent of word-wrap */
+    overflow: auto;
 }
 
 .Buttons {
     height: 80%;
+    font-family: calculatorDisplayFont, sans-serif;
     font-size: 1.5rem;
 }
 
