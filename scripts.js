@@ -446,7 +446,7 @@ const calculatorState = {
 
 };
 
-//listen for click events
+//listen for click and keyboard events
 let buttons = document.querySelector(".Buttons");
 buttons.addEventListener("click", (event) => {
     if (event.target.id != "") {
@@ -454,10 +454,34 @@ buttons.addEventListener("click", (event) => {
     }
 })
 
-//listen for keyboard events
 let calculatorPage = document.body;
+const myClickEvent = new MouseEvent("click", {
+    bubbles: true,
+    cancelable: true
+});
+let simulatedButton = "";
+let isKeyDown = false;
+
 calculatorPage.addEventListener("keydown", (event) => {
-    console.clear();
-    console.log("Event key: " + event.key);
-    console.log("Event code: " + event.code);
+    //simulate click on calculator button
+    if (isKeyDown == false) {
+        switch (event.key) {
+            case "1":
+                simulatedButton = document.querySelector("#OneButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+        }
+        isKeyDown = true;
+    }
+})
+
+calculatorPage.addEventListener("keyup", (event) => {
+    //simulate click on calculator button
+    if (isKeyDown == true) {
+        switch (event.key) {
+            case "1":
+                isKeyDown = false;
+                break;
+        }
+    }
 })
