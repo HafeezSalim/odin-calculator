@@ -5,6 +5,19 @@
     box-sizing: border-box;
 }
 
+@font-face {
+    font-family: calculatorDisplayFont;
+    src: url("digital-7-font/Digital7-rg1mL.ttf");
+}
+
+html {
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
 .calculatorWrapper {
     border: 2px;
     border-style: solid;
@@ -23,14 +36,16 @@
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
-    font-size: 50px;
-    background-color: linen;
+    font-family: calculatorDisplayFont, sans-serif;
+    font-size: 2.5rem;
+    background-color: black;
+    color: white;
     overflow-wrap: break-word; /* Modern equivalent of word-wrap */
 }
 
 .Buttons {
     height: 80%;
-    font-size: 30px;
+    font-size: 1.5rem;
 }
 
 .Line3, .Line4, .Line5, .Line6, .Line7 {
@@ -62,12 +77,8 @@
     background-color:aliceblue;
 }
 
-.Operator {
-    background-color: beige;
-}
-
-#ClearButton, #EqualsButton {
-    background-color: bisque;
+#ClearButton, #EqualsButton, .Operator {
+    background-color: rgb(205, 207, 212);
 }
 
 .greyed-out {
