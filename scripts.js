@@ -470,6 +470,74 @@ calculatorPage.addEventListener("keydown", (event) => {
                 simulatedButton = document.querySelector("#OneButton");
                 simulatedButton.dispatchEvent(myClickEvent);
                 break;
+            case "2":
+                simulatedButton = document.querySelector("#TwoButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "3":
+                simulatedButton = document.querySelector("#ThreeButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "4":
+                simulatedButton = document.querySelector("#FourButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "5":
+                simulatedButton = document.querySelector("#FiveButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "6":
+                simulatedButton = document.querySelector("#SixButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "7":
+                simulatedButton = document.querySelector("#SevenButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "8":
+                simulatedButton = document.querySelector("#EightButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "9":
+                simulatedButton = document.querySelector("#NineButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "0":
+                simulatedButton = document.querySelector("#ZeroButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case ".":
+                simulatedButton = document.querySelector("#DotButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "+":
+                simulatedButton = document.querySelector("#PlusButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "-":
+                simulatedButton = document.querySelector("#MinusButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "*":
+                simulatedButton = document.querySelector("#MultiplyButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "/":
+                simulatedButton = document.querySelector("#DivideButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "=":
+                simulatedButton = document.querySelector("#EqualsButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "Enter":
+                simulatedButton = document.querySelector("#EqualsButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
+            case "Backspace":
+                simulatedButton = document.querySelector("#BackspaceButton");
+                simulatedButton.dispatchEvent(myClickEvent);
+                break;
         }
         isKeyDown = true;
     }
@@ -478,10 +546,6 @@ calculatorPage.addEventListener("keydown", (event) => {
 calculatorPage.addEventListener("keyup", (event) => {
     //simulate click on calculator button
     if (isKeyDown == true) {
-        switch (event.key) {
-            case "1":
-                isKeyDown = false;
-                break;
-        }
+        isKeyDown = false;
     }
 })
